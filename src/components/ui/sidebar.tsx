@@ -294,7 +294,6 @@ function SidebarRail({ className, ...props }: React.ComponentProps<'button'>) {
         'group-data-[collapsible=offcanvas]:translate-x-0 group-data-[collapsible=offcanvas]:after:start-full',
         '[[data-side=left][data-collapsible=offcanvas]_&]:-inset-e-2',
         '[[data-side=right][data-collapsible=offcanvas]_&]:-inset-s-2',
-
         className
       )}
       {...props}
