@@ -19,7 +19,7 @@ export function AppTitle() {
         >
           <div className='flex items-center gap-3'>
             <div className='flex aspect-square size-8 items-center justify-center rounded-sm bg-sidebar-primary'>
-              <Command className='size-6 shrink-0' />
+              <Command className='size-4 shrink-0' />
             </div>
             <Link
               to='/'
@@ -29,7 +29,6 @@ export function AppTitle() {
               <span className='truncate font-bold'>Shadcn-Admin</span>
               <span className='truncate text-xs'>Vite + ShadcnUI</span>
             </Link>
-         
           </div>
         </SidebarMenuButton>
       </SidebarMenuItem>
