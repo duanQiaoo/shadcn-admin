@@ -1,6 +1,7 @@
 import { getRouteApi } from '@tanstack/react-router'
 import { Header } from '@/components/layout/header'
 import { Main } from '@/components/layout/main'
+import { RouteBreadcrumb } from '@/components/layout/route-breadcrumb'
 import { ProfileDropdown } from '@/components/profile-dropdown'
 import { Search } from '@/components/search'
 import { ThemeSwitch } from '@/components/theme-switch'
@@ -19,7 +20,8 @@ export function Users() {
   return (
     <UsersProvider>
       <Header fixed>
-        <Search className='me-auto' />
+        <RouteBreadcrumb className='me-auto' />
+        <Search />
         <ThemeSwitch />
         <ProfileDropdown />
       </Header>

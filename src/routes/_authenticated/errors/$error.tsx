@@ -1,5 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { Header } from '@/components/layout/header'
+import { RouteBreadcrumb } from '@/components/layout/route-breadcrumb'
 import { ProfileDropdown } from '@/components/profile-dropdown'
 import { Search } from '@/components/search'
 import { ThemeSwitch } from '@/components/theme-switch'
@@ -29,7 +30,8 @@ function RouteComponent() {
   return (
     <>
       <Header fixed className='border-b'>
-        <Search className='me-auto' />
+        <RouteBreadcrumb className='me-auto' />
+        <Search />
         <ThemeSwitch />
         <ProfileDropdown />
       </Header>

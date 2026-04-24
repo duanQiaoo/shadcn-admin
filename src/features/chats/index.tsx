@@ -21,6 +21,7 @@ import { ScrollArea } from '@/components/ui/scroll-area'
 import { Separator } from '@/components/ui/separator'
 import { Header } from '@/components/layout/header'
 import { Main } from '@/components/layout/main'
+import { RouteBreadcrumb } from '@/components/layout/route-breadcrumb'
 import { ProfileDropdown } from '@/components/profile-dropdown'
 import { Search } from '@/components/search'
 import { ThemeSwitch } from '@/components/theme-switch'
@@ -66,7 +67,8 @@ export function Chats() {
     <>
       {/* ===== Top Heading ===== */}
       <Header>
-        <Search className='me-auto' />
+        <RouteBreadcrumb className='me-auto' />
+        <Search />
         <ThemeSwitch />
         <ProfileDropdown />
       </Header>
