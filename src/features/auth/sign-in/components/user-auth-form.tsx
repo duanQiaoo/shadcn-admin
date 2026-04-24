@@ -6,6 +6,11 @@ import { Link, useNavigate } from '@tanstack/react-router'
 import { Loader2, LogIn } from 'lucide-react'
 import { toast } from 'sonner'
 import { IconFacebook, IconGithub } from '@/assets/brand-icons'
+import {
+  INVALID_CREDENTIALS_MESSAGE,
+  MOCK_AUTH_CREDENTIALS,
+  normalizeRedirectPath,
+} from '@/lib/auth'
 import { useAuthStore } from '@/stores/auth-store'
 import { sleep, cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
@@ -52,6 +57,18 @@ export function UserAuthForm({
   })
 
   function onSubmit(data: z.infer<typeof formSchema>) {
+    if (
+      data.email !== MOCK_AUTH_CREDENTIALS.email ||
+      data.password !== MOCK_AUTH_CREDENTIALS.password
+    ) {
+      form.setError('password', {
+        type: 'manual',
+        message: INVALID_CREDENTIALS_MESSAGE,
+      })
+      toast.error(INVALID_CREDENTIALS_MESSAGE)
+      return
+    }
+
     setIsLoading(true)
 
     toast.promise(sleep(2000), {
@@ -62,8 +79,8 @@ export function UserAuthForm({
         // Mock successful authentication with expiry computed at success time
         const mockUser = {
           accountNo: 'ACC001',
-          email: data.email,
-          role: ['user'],
+          email: MOCK_AUTH_CREDENTIALS.email,
+          role: ['admin'],
           exp: Date.now() + 24 * 60 * 60 * 1000, // 24 hours from now
         }
 
@@ -72,7 +89,7 @@ export function UserAuthForm({
         auth.setAccessToken('mock-access-token')
 
         // Redirect to the stored location or default to dashboard
-        const targetPath = redirectTo || '/'
+        const targetPath = normalizeRedirectPath(redirectTo)
         navigate({ to: targetPath, replace: true })
 
         return `Welcome back, ${data.email}!`

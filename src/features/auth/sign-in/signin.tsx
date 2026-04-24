@@ -1,11 +1,16 @@
 import { Link } from '@tanstack/react-router'
+import { MOCK_AUTH_CREDENTIALS } from '@/lib/auth'
 import { Logo } from '@/assets/logo'
 import { cn } from '@/lib/utils'
 import dashboardDark from './assets/dashboard-dark.png'
 import dashboardLight from './assets/dashboard-light.png'
 import { UserAuthForm } from './components/user-auth-form'
 
-export function SignIn2() {
+interface SignInPageProps {
+  redirectTo?: string
+}
+
+export function SignInPage({ redirectTo }: SignInPageProps) {
   return (
     <div className='relative container grid h-svh flex-col items-center justify-center lg:max-w-none lg:grid-cols-2 lg:px-0'>
       <div className='lg:p-8'>
@@ -23,14 +28,19 @@ export function SignIn2() {
               <br className='max-sm:hidden' /> your account. Don't have an
               account?{' '}
               <Link
-                to='/sign-up'
+                to='/signup'
                 className='text-nowrap underline underline-offset-4 hover:text-primary'
               >
                 Sign Up
               </Link>
             </p>
+            <div className='rounded-lg border border-dashed border-border/80 bg-muted/50 px-3 py-2 text-sm text-muted-foreground'>
+              Demo account:{' '}
+              <span className='font-medium'>{MOCK_AUTH_CREDENTIALS.email}</span>{' '}
+              / <span className='font-medium'>{MOCK_AUTH_CREDENTIALS.password}</span>
+            </div>
           </div>
-          <UserAuthForm />
+          <UserAuthForm redirectTo={redirectTo} />
           <p className='px-8 text-center text-sm text-muted-foreground'>
             By clicking sign in, you agree to our{' '}
             <a
